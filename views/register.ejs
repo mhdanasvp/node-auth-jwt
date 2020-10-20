@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+</head>
+<body>
+    <form>
+    <input type="text" name="username" id="username" placeholder="username">
+    <input type="text" name="email" id="email" placeholder="email">
+    <input type="text" name="password" id="password" placeholder="password">
+    <input type="text" name="password_confirmation" id="password_confirmation" placeholder="password_confirmation">
+    <input type="text" name="phone" id="phone" placeholder="phone">
+    <input type="text" name="address" id="address" placeholder="address">
+    <input type="submit" value="submit">
+    </form>
+    <script>
+        const form=document.querySelector("form")
+        form.addEventListener("submit",async(e)=>{
+            e.preventDefault()
+            const email=form.email.value
+            const username=form.username.value
+            const password=form.password.value
+            const password_confirmation=form.password_confirmation.value
+            const phone=form.phone.value
+            const address=form.address.value
+            try {
+                const result=await fetch("/auth/register",{
+                    method:"POST",
+                    body:JSON.stringify({email,username,password,password_confirmation,phone,address}),
+                    headers:{"Content-Type":"application/json"}
+                })
+            } catch (error) {
+               console.log(error);
+            }
+
+            
+        })
+    </script>
+</body>
+</html>
